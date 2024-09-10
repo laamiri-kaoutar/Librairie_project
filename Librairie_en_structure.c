@@ -132,7 +132,7 @@ void croissant_heapSort(Livre livres[], int n){
     if (k<n &&  strcasecmp(livres[k].titre ,livres[index].titre)>0) index =k;
     if(index !=i){
         swap(&livres[i],&livres[index]);
-        heap(livres , n, index);
+        croissant_heap(livres , n, index);
     }
  }
 
@@ -199,12 +199,12 @@ printf("4: quantite Totale de Livres\n");
 printf("0: Quitter\n");
 printf("\nVeuillez entrer votre choix: ");
 scanf("%d",&choix);
-switch (expression)
+switch (choix)
 {
 case 1:
     nombreTotalLivres(cmp);
     break;
-case 2
+case 2:
     prixTotalEtMoyenne(livre , cmp);
     break;
 case 3:
@@ -261,7 +261,7 @@ switch (choix)
     rechercher(livres,cmp);
     break;
     case 5:
-     int n ;
+       int n ;
        printf("Trier les livres :\n1 - Croissant (A-Z)\n2 - Décroissant (Z-A)\nChoix : ");
        scanf("%d", &n);
         if (n==1 )
