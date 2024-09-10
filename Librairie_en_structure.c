@@ -116,14 +116,6 @@ void swap(Livre *l1, Livre *l2){
     *l1=  *l2;
     *l2 = temp;
 }
-void croissant_heapSort(Livre livres[], int n){
-    for(int i= n/2-1 ; i>=0 ;i--) { heap(livres , n, i);}
-    for (int i = n-1; i >= 0; i--)
-    {
-        swap(&livres[i],&livres[0]);
-        croissant_heap(livres,i,0);
-    }
-}
  void croissant_heap(Livre livres[],int n, int i){
     int index =i;
     int j = i*2+1;
@@ -135,13 +127,12 @@ void croissant_heapSort(Livre livres[], int n){
         croissant_heap(livres , n, index);
     }
  }
-
- void decroissant_heapSort(Livre livres[], int n){
-    for(int i= n/2-1 ; i>=0 ;i--) { heap(livres , n, i);}
+void croissant_heapSort(Livre livres[], int n){
+    for(int i= n/2-1 ; i>=0 ;i--) { croissant_heap(livres , n, i);}
     for (int i = n-1; i >= 0; i--)
     {
         swap(&livres[i],&livres[0]);
-        decroissant_heap(livres,i,0);
+        croissant_heap(livres,i,0);
     }
 }
  void decroissant_heap(Livre livres[],int n, int i){
@@ -155,6 +146,14 @@ void croissant_heapSort(Livre livres[], int n){
         decroissant_heap(livres , n, index);
     }
  }
+ void decroissant_heapSort(Livre livres[], int n){
+    for(int i= n/2-1 ; i>=0 ;i--) { decroissant_heap(livres , n, i);}
+    for (int i = n-1; i >= 0; i--)
+    {
+        swap(&livres[i],&livres[0]);
+        decroissant_heap(livres,i,0);
+    }
+}
 void livresPlusCherEtMoinsCher(Livre livres[], int cmp) {
     if (cmp == 0) {
         printf("Aucun livre dans la collection.\n");
@@ -239,7 +238,7 @@ int cmp =0;
 int choix;
 do
 {
-choix = menu;
+choix = menu();
 switch (choix)
   {
     case 1:
